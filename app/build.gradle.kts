@@ -86,4 +86,7 @@ dependencies {
     //For the room
     implementation("androidx.room:room-ktx:2.5.2")
 
+    //OnSwipe-action
+    implementation("me.saket.swipe:swipe:1.2.0")
+
 }

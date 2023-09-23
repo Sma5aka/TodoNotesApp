@@ -11,4 +11,8 @@ sealed class UiEvent{
         val action: String? = null
     ): UiEvent()
 
+    data class ShowAlertDialog(
+        val title: String,
+        val text: String
+    ): UiEvent()
 }
