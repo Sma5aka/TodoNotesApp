@@ -1,10 +1,10 @@
-package com.example.myweatherapp.di
+package com.example.myweatherapp.presentation.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.myweatherapp.data.TodoDatabase
-import com.example.myweatherapp.data.TodoRepository
-import com.example.myweatherapp.data.TodoRepositoryImplementation
+import com.example.myweatherapp.data.data_source.TodoDatabase
+import com.example.myweatherapp.domain.repository.TodoRepository
+import com.example.myweatherapp.data.repository.TodoRepositoryImplementation
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

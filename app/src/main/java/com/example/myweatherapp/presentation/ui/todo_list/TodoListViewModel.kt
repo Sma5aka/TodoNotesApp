@@ -1,11 +1,9 @@
-package com.example.myweatherapp.ui.todo_list
+package com.example.myweatherapp.presentation.ui.todo_list
 
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Text
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myweatherapp.data.Todo
-import com.example.myweatherapp.data.TodoRepository
+import com.example.myweatherapp.domain.repository.TodoRepository
 import com.example.myweatherapp.util.Routes
 import com.example.myweatherapp.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel

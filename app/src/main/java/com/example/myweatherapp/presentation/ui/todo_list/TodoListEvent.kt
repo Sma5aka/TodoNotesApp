@@ -1,4 +1,4 @@
-package com.example.myweatherapp.ui.todo_list
+package com.example.myweatherapp.presentation.ui.todo_list
 
 import com.example.myweatherapp.data.Todo
 

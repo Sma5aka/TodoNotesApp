@@ -1,4 +1,4 @@
-package com.example.myweatherapp
+package com.example.myweatherapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,9 +8,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.myweatherapp.ui.add_edit_todo.AddEditTodoScreen
-import com.example.myweatherapp.ui.theme.MyWeatherApp
-import com.example.myweatherapp.ui.todo_list.TodoListScreen
+import com.example.myweatherapp.presentation.ui.add_edit_todo.AddEditTodoScreen
+import com.example.myweatherapp.presentation.ui.theme.MyWeatherApp
+import com.example.myweatherapp.presentation.ui.todo_list.TodoListScreen
 import com.example.myweatherapp.util.Routes
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,17 +33,25 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable(
-                        Routes.ADD_EDIT_TODO + "?todoId={todoId}",
+                        Routes.ADD_EDIT_TODO + "?todoId={todoId}&todoColor={todoColor}",
                         arguments = listOf(
                             navArgument(name = "todoId") {
+                                type = NavType.IntType
+                                defaultValue = -1
+                            },
+                            navArgument(name = "todoColor") {
                                 type = NavType.IntType
                                 defaultValue = -1
                             }
                         )
                     ) {
-                        AddEditTodoScreen(onPopBackStack = {
+                        val color = it.arguments?.getInt("todoColor") ?: -1
+                        AddEditTodoScreen(
+                            onPopBackStack = {
                             navController.popBackStack()
-                        })
+                        },
+                            todoColor = color
+                        )
 
                     }
                 }

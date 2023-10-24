@@ -1,13 +1,15 @@
-package com.example.myweatherapp.ui.add_edit_todo
+package com.example.myweatherapp.presentation.ui.add_edit_todo
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myweatherapp.data.Todo
-import com.example.myweatherapp.data.TodoRepository
+import com.example.myweatherapp.domain.repository.TodoRepository
 import com.example.myweatherapp.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -21,6 +23,8 @@ class AddEditTodoViewmodel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    private val _todoColor = mutableStateOf(Todo.todosColor.random().toArgb())
+    val todoColor: State<Int> = _todoColor
     var todo by mutableStateOf<Todo?>(null)
         private set
 
@@ -69,11 +73,15 @@ class AddEditTodoViewmodel @Inject constructor(
                             title = title,
                             description = description,
                             isDone = todo?.isDone ?: false,
+                            color = todo!!.color,
                             id = todo?.id
                         )
                     )
                     sendUiEvent(UiEvent.PopBackStack)
                 }
+            }
+            is AddEditEvent.onChangeColor -> {
+                _todoColor.value = event.color
             }
         }
     }
